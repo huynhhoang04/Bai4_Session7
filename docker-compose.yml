@@ -2,14 +2,15 @@ version: '3.8'
 
 services:
   self-hosted-runner:
-    image: ghcr.io/actions/actions-runner:latest
+    image: ghcr.io/myoung34/docker-github-actions-runner:latest
     container_name: quickbite-restaurant-runner
     environment:
-      - GITHUB_REPOSITORY=quickbite/restaurant-service
-      - GITHUB_TOKEN=${GITHUB_TOKEN}
-      - RUNNER_LABELS=quickbite,self-hosted,restaurant-service
+      - ACCESS_TOKEN=${GITHUB_TOKEN}
+      - RUNNER_SCOPE=repo
+      - REPO_URL=https://github.com/huynhhoang04/Bai4_Session7
       - RUNNER_NAME=restaurant-service-runner
       - RUNNER_WORKDIR=/tmp/runner-work
+      - LABELS=quickbite,self-hosted,restaurant-service
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - runner-work:/tmp/runner-work
